@@ -16,6 +16,8 @@
       path: /mnt/c/ProgramData/chocolatey/bin/choco.exe
 
 - shell:
+  - description: Linking Windows home to ~/winhome...
+    command: ([[ -f ~/.winuser ]] || (read -p 'Your Windows Username? ' WINUSER && echo "${WINUSER}" > ~/.winuser )) && WINHOME="/mnt/c/Users/$(cat ~/.winuser)/" && [[ ! -L ~/winhome ]] && ln -s $WINHOME ~/winhome
   - description: Configuring wsltty (mintty for WSL)...
-    command: read -p 'Your Windows Username? ' winuser && WSLTTY=/mnt/c/Users/${winuser}/AppData/Roaming/wsltty/ && mkdir -p $WSLTTY/themes && cp -L mintty/minttyrc $WSLTTY/config && cp -L mintty/themes/mintty-colors-solarized/.minttyrc.dark $WSLTTY/themes/solarized-dark && cp -L mintty/themes/mintty-colors-solarized/.minttyrc.light $WSLTTY/themes/solarized-light
+    command: ([[ -f ~/.winuser ]] && WINUSER=$(cat ~/.winuser) && WSLTTY=/mnt/c/Users/${WINUSER}/AppData/Roaming/wsltty/ && mkdir -p $WSLTTY/themes && cp --dereference --no-clobber mintty/minttyrc $WSLTTY/config && cp --dereference --no-clobber mintty/themes/mintty-colors-solarized/.minttyrc.dark $WSLTTY/themes/solarized-dark && cp --dereference --no-clobber mintty/themes/mintty-colors-solarized/.minttyrc.light $WSLTTY/themes/solarized-light)
   - [touch ~/.sudo_as_admin_successful , Supressing sudo message...]

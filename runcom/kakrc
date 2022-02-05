@@ -1,0 +1,48 @@
+# Kakoune runcom file
+# James Bernsen
+
+#############################################################################
+# Preferences
+#############################################################################
+
+# Disable Clippy in help boxes
+set global ui_options ncurses_assistant=none
+
+# Color scheme
+colorscheme solarized-dark-termcolors
+
+# Indenting and tabs
+hook global InsertChar \t %{ exec -draft -itersel h@ }
+set global tabstop 2
+set global indentwidth 2
+
+# Highlighters
+add-highlighter global/ number-lines
+add-highlighter global/ show-matching
+add-highlighter global/ column '%opt{autowrap_column}' default,rgb:404060
+
+
+#############################################################################
+# User-defined key mapppings
+#############################################################################
+map -docstring "Write all modified file buffers and quit" \
+    global user q ":write-all-quit<ret>"
+map -docstring "Write all modified file buffers, and kill session" \
+    global user Q ":write-all-quit<ret>:kill<ret>"
+
+#############################################################################
+# These are "kak-to-vim" training extensions.
+#############################################################################
+
+# Echoes the specified parameter if there is no preceding count. If there
+# is a preceding count, then the zero is executed as part of the count.
+define-command zero -params 1 %{ evaluate-commands %sh{
+  if [ $kak_count = 0 ]; then
+    echo "$1"
+  else
+    echo "exec ${kak_count}0"
+  fi
+}}
+map global normal 0 ':zero "echo Did you mean gh ?"<ret>'
+
+map global normal $ 'echo Did you mean gl ?<ret>'

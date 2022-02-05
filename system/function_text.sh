@@ -14,13 +14,23 @@ lc() {
 }
 
 tolower() {
-  text=$1
+  local text=$1
   for((i=0;i<${#text};i++))
   do
-    ch="${text:$i:1}"
-    lch=$(lc $ch)
-    ltext="${ltext}${lch}"
+    local ch="${text:$i:1}"
+    local lch=$(lc $ch)
+    local ltext="${ltext}${lch}"
   done
   printf $ltext
+}
+
+# Credit: https://stackoverflow.com/questions/369758/how-to-trim-whitespace-from-a-bash-variable
+trim_whitespace() {
+  local trim="$*"
+  # remove leading whitespace
+  trim="${trim#"${trim%%[![:space:]]*}"}"
+  # remove trailing whitespace
+  trim="${trim%"${trim##*[![:space:]]}"}"
+  printf "${trim}"
 }
 

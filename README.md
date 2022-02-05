@@ -29,6 +29,12 @@ This will install ChefDK on the machine, along with the software and configurati
 These items (for now) require a manual check to see if they are installed, and if not, to install them.
 
 #### On Most Platforms
+* [Kakoune](https://kakoune.org)
+  - Ubuntu: sudo apt install libncursesw5-dev pkg-config && git clone https://github.com/mawww/kakoune.git && cd kakoune/src && make && PREFIX=$HOME/local make install
+* [jq](https://stedolan.github.io/jq/)
+  - Ubuntu: sudo apt-get install jq
+  - Windows (cmd): curl -L -o %USERPROFILE%/bin/jq.exe https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win64.exe
+  - Windows (psh): Invoke-WebRequest -MaximumRedirection 1 -OutFile $Env:UserProfile/bin/jq.exe https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win64.exe
 * [AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
 * [Universal Ctags](https://github.com/universal-ctags/ctags)
 

@@ -4,6 +4,7 @@ case $UNAME_S in
   'Linux')
     case $UNAME_R in
       *Microsoft*)  PLATFORM='WSL' ;;
+      *microsoft*)  PLATFORM='WSL' ;;
       *)            PLATFORM='Linux' ;;
     esac
     ;;

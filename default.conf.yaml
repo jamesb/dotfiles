@@ -17,6 +17,8 @@
         path: extra/bin
     ~/bin/mdtodo:
         path: git/mdtodo.sh
+    ~/.config/kak/kakrc:
+        path: runcom/kakrc
     ~/.aws/config:
         path: aws/config
     ~/.gitconfig:
@@ -25,6 +27,8 @@
         path: git/gitignore
     ~/.git-templates:
         path: git/templates
+    ~/.inputrc:
+        path: runcom/inputrc
     ~/.marvim:
         path: marvim
     ~/.tmux:
