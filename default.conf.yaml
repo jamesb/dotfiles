@@ -17,6 +17,8 @@
         path: extra/bin
     ~/bin/awsenv:
         path: aws/awsenv.sh
+    ~/bin/fitflow:
+        path: fitbit/fitflow.sh
     ~/bin/mdtodo:
         path: git/mdtodo.sh
     ~/.config/kak/kakrc:
