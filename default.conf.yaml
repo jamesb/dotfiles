@@ -15,6 +15,8 @@
         path: runcom/bashrc
     ~/bin:
         path: extra/bin
+    ~/bin/awsenv:
+        path: aws/awsenv.sh
     ~/bin/mdtodo:
         path: git/mdtodo.sh
     ~/.config/kak/kakrc:
