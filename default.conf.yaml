@@ -15,10 +15,14 @@
         path: runcom/bashrc
     ~/bin:
         path: extra/bin
+    ~/bin/awsenv:
+        path: aws/awsenv.sh
     ~/bin/fitflow:
         path: fitbit/fitflow.sh
     ~/bin/mdtodo:
         path: git/mdtodo.sh
+    ~/.config/kak/kakrc:
+        path: runcom/kakrc
     ~/.aws/config:
         path: aws/config
     ~/.gitconfig:
@@ -27,6 +31,8 @@
         path: git/gitignore
     ~/.git-templates:
         path: git/templates
+    ~/.inputrc:
+        path: runcom/inputrc
     ~/.marvim:
         path: marvim
     ~/.tmux:

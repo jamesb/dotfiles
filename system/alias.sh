@@ -49,3 +49,8 @@ alias journal='date >> ~/admin_journal.txt; $EDITOR ~/admin_journal.txt'
 # leading underscore).
 alias functions='declare -F | awk "\$3 ~ /^[^_]/ { print \$3}"'
 
+# Train yourself to run 'kak' instead of 'vim' :-)
+alias vim='vim2kak'
+
+# Use a single kak server by default
+alias kak='kak_default_server'

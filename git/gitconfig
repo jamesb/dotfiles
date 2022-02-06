@@ -10,7 +10,7 @@
 	sha = rev-parse --short HEAD
 [core]
 	autocrlf = input
-	editor = vim
+	editor = kak
 	excludesfile = ~/.gitignore
 [push]
 	default = simple

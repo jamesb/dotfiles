@@ -4,9 +4,9 @@
 # Default permissions to 0644
 umask 022
 
-# Set vim-like shell
-export EDITOR=vim
-export VISUAL=${EDITOR}
+# Set kak as interactive editor
+export VISUAL=kak
+# Set kak-like bash readline bindings (in conjunction with ../runcom/inputrc)
 set -o vi
 
 
@@ -29,6 +29,10 @@ shopt -s histappend
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
+
+
+# Allow cd to directly change to children of these dirs:
+export CDPATH=~/repos:~/winhome
 
 
 # Autocorrect typos in path names when using `cd`
