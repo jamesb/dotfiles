@@ -25,10 +25,17 @@ add-highlighter global/ column '%opt{autowrap_column}' default,rgb:404060
 #############################################################################
 # User-defined key mapppings
 #############################################################################
+
+# Normal-mode mappings
+map global normal '#' :comment-line<ret> -docstring 'comment line'
+map global normal '<a-#>' :comment-block<ret> -docstring 'comment block'
+
+# 'global user' mappings for when user-prefix is pressed (default: ',')
 map -docstring "Write all modified file buffers and quit" \
     global user q ":write-all-quit<ret>"
 map -docstring "Write all modified file buffers, and kill session" \
     global user Q ":write-all-quit<ret>:kill<ret>"
+
 
 #############################################################################
 # These are "kak-to-vim" training extensions.
