@@ -11,6 +11,8 @@ fi
 prepend-path "/bin"
 prepend-path "/usr/bin"
 prepend-path "/usr/local/bin"
+prepend-path "/usr/local/go/bin"
+prepend-path "$HOME/go/bin"
 prepend-path "$DOTFILES_DIR/bin"
 prepend-path "$HOME/.local/bin"
 prepend-path "$HOME/bin"
