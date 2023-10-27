@@ -11,10 +11,12 @@ Usage: ${progself} [OPTION]...
 Options:
   -h,?           display this usage information
   -n             adds the export -n option to un-export the variables
+  -p <profile>   choose an AWS profile
 
 Examples:
   eval "\$(${progself})"
   eval "\$(${progself} -n)"
+  eval "\$(${progself} -p awsuser)"
 
 USAGE_END
 
@@ -36,7 +38,8 @@ PROGSELF=$(basename $0)
 
 # Get command-line options
 export_opt=""
-while getopts "?hn" opt; do
+profile_opt=""
+while getopts "?hnp:" opt; do
   case "${opt}" in
     h|\?)
       show_usage "${PROGSELF}"
@@ -45,6 +48,8 @@ while getopts "?hn" opt; do
     n)
       export_opt="-n"
       ;;
+    p)
+      profile_opt="${OPTARG}"
   esac
 done
 
@@ -57,15 +62,20 @@ for prog in "${prereqs[@]}" ; do
   command -v ${prog} > /dev/null 2>&1 || { echo >&2 "Program '${prog}' required but not found."; exit ${EX_FAIL}; }
 done
 
+aws_prof=""
+if [ -n "${profile_opt}" ]; then
+  aws_prof="--profile ${profile_opt}"
+fi
 
 # Run aws configure and capture output
-adrg=$(aws configure get region)
-aaki=$(aws configure get aws_access_key_id)
-asak=$(aws configure get aws_secret_access_key)
+adrg=$(aws configure ${aws_prof} get region)
+aaki=$(aws configure ${aws_prof} get aws_access_key_id)
+asak=$(aws configure ${aws_prof} get aws_secret_access_key)
+
 
 comment="# To export these variables, run this script in Bash with the eval command, like this: "
 comment+=$'\n'
-comment+="# eval \"\$(${PROGSELF})\""
+comment+="# eval \"\$(${PROGSELF} <options>)\""
 comment+=$'\n'
 
 exports=""
