@@ -1,5 +1,6 @@
 [user]
 	name = James Bernsen
+	email = jrbtex@gmail.com
 [alias]
 	lg = log --graph --oneline --decorate
 	lga = log --graph --oneline --decorate --all
