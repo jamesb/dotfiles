@@ -12,11 +12,13 @@ Options:
   -h,?           display this usage information
   -n             adds the export -n option to un-export the variables
   -p <profile>   choose an AWS profile
+  -r <region>    override AWS profile region
 
 Examples:
   eval "\$(${progself})"
   eval "\$(${progself} -n)"
   eval "\$(${progself} -p awsuser)"
+  eval "\$(${progself} -r us-east-1)"
 
 USAGE_END
 
@@ -39,7 +41,8 @@ PROGSELF=$(basename $0)
 # Get command-line options
 export_opt=""
 profile_opt=""
-while getopts "?hnp:" opt; do
+region_opt=""
+while getopts "?hnp:r:" opt; do
   case "${opt}" in
     h|\?)
       show_usage "${PROGSELF}"
@@ -50,6 +53,10 @@ while getopts "?hnp:" opt; do
       ;;
     p)
       profile_opt="${OPTARG}"
+      ;;
+    r)
+      region_opt="${OPTARG}"
+      ;;
   esac
 done
 
@@ -68,7 +75,11 @@ if [ -n "${profile_opt}" ]; then
 fi
 
 # Run aws configure and capture output
-adrg=$(aws configure ${aws_prof} get region)
+if [ -n "${region_opt}" ]; then
+  adrg="${region_opt}"
+else
+  adrg=$(aws configure ${aws_prof} get region)
+fi
 aaki=$(aws configure ${aws_prof} get aws_access_key_id)
 asak=$(aws configure ${aws_prof} get aws_secret_access_key)
 
