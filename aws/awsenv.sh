@@ -7,8 +7,11 @@ show_usage() {
   read -r -d '' usage << USAGE_END
 
 Usage: ${progself} [OPTION]...
+Uses the AWS CLI to generate environment variables for the access key pair
+and region associated with the specified profile.
 
 Options:
+  -a             create an AWS_ACCOUNT_ID variable for the account number
   -h,?           display this usage information
   -n             adds the export -n option to un-export the variables
   -p <profile>   choose an AWS profile
@@ -39,11 +42,15 @@ EX_USAGE=64
 PROGSELF=$(basename $0)
 
 # Get command-line options
+acct_opt=""
 export_opt=""
 profile_opt=""
 region_opt=""
-while getopts "?hnp:r:" opt; do
+while getopts "a?hnp:r:" opt; do
   case "${opt}" in
+    a)
+      acct_opt="-a"
+      ;;
     h|\?)
       show_usage "${PROGSELF}"
       exit ${EX_SUCCESS} # exit with success here since usage was requested
@@ -82,7 +89,9 @@ else
 fi
 aaki=$(aws configure ${aws_prof} get aws_access_key_id)
 asak=$(aws configure ${aws_prof} get aws_secret_access_key)
-
+if [[ ${acct_opt} =~ a ]]; then
+  aaid=$(aws ${aws_prof} sts get-caller-identity --output text --query Account)
+fi
 
 comment="# To export these variables, run this script in Bash with the eval command, like this: "
 comment+=$'\n'
@@ -96,12 +105,20 @@ if [[ ${export_opt} =~ n ]]; then
   exports+="export ${export_opt} AWS_ACCESS_KEY_ID"
   exports+=$'\n'
   exports+="export ${export_opt} AWS_SECRET_ACCESS_KEY"
+  if [[ ${acct_opt} =~ a ]]; then
+    exports+=$'\n'
+    exports+="export ${export_opt} AWS_ACCOUNT_ID"
+  fi
 else
   exports+="export ${export_opt} AWS_DEFAULT_REGION=\"${adrg}\""
   exports+=$'\n'
   exports+="export ${export_opt} AWS_ACCESS_KEY_ID=\"${aaki}\""
   exports+=$'\n'
   exports+="export ${export_opt} AWS_SECRET_ACCESS_KEY=\"${asak}\""
+  if [[ ${acct_opt} =~ a ]]; then
+    exports+=$'\n'
+    exports+="export ${export_opt} AWS_ACCOUNT_ID=\"${aaid}\""
+  fi
 fi
 
 # Enable extended globbing
