@@ -113,3 +113,17 @@ kak_default_server() {
     fi
   fi
 }
+
+
+git () {
+  case $1 in
+    pull)
+      shift;
+      echo "Try using 'git fetch <remote>' followed by 'git diff <branch> <remote>/<branch>' and 'git merge [--ff-only] <remote>/<branch>' when ready."
+    ;;
+    *)
+      command git "$@"
+    ;;
+  esac
+}
+
