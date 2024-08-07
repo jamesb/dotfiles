@@ -75,7 +75,7 @@
 	url = https://github.com/t9md/vim-choosewin.git
 [submodule "vim/bundle/vim-obsession"]
 	path = vim/bundle/vim-obsession
-	url = git://github.com/tpope/vim-obsession.git
+	url = https://github.com/tpope/vim-obsession.git
 [submodule "system/dircolors-solarized"]
 	path = system/dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
