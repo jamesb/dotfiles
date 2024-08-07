@@ -18,7 +18,7 @@
 [init]
 	templatedir = ~/.git-templates
 [credential]
-	helper = /mnt/c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-manager-core.exe
+	helper = /mnt/c/Users/James/AppData/Local/Programs/Git/mingw64/libexec/git-core/git-credential-wincred.exe
 [url "https://github.com/"]
 	insteadOf = git://github.com/
 [diff]
