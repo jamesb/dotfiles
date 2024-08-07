@@ -1,4 +1,5 @@
 # Prepend new items to path (if directory exists)
+prepend-path "/snap/bin"
 prepend-path "/usr/local/bin"
 prepend-path "/mnt/c/Program Files/Oracle/VirtualBox"
 prepend-path "/mnt/c/HashiCorp/Vagrant/bin"
