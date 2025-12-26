@@ -17,6 +17,7 @@
 	default = simple
 [init]
 	templatedir = ~/.git-templates
+	defaultBranch = main
 [credential]
 	helper = /mnt/c/Users/James/AppData/Local/Programs/Git/mingw64/libexec/git-core/git-credential-wincred.exe
 [url "https://github.com/"]
