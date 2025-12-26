@@ -60,3 +60,6 @@ fi
 
 # Set personal GitHub variables
 export GITHUB_USER=jamesb
+
+# Enable Docker BuildKit
+export DOCKER_BUILDKIT=1
